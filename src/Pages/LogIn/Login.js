@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/UserContext';
 
 const Login = () => {
+
+const {user ,signInWithGoogle}= useContext(AuthContext);
+
+const handleGoogleSignIn = () => {
+    signInWithGoogle(user)
+    .then(result => {
+        const user = result.user;
+        console.log(user)
+    })
+    .catch(err => console.log(err))
+
+}
+
+
+
+
+
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
@@ -34,7 +52,7 @@ const Login = () => {
 
 
                         </form>
-                        <button onClick={''} className=" btn btn-outline btn-primary my-6" >Login With Google</button>
+                        <button onClick={handleGoogleSignIn} className=" btn btn-outline btn-primary my-6" >Login With Google</button>
                     </div>
                    
                 </div>
